@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Compraondeline</string>
+    <string name="tp_cadastro">Tipo de cadastro</string>
+    <string name="nm_produto">Nome</string>
+    <string name="tp_unidade">Unidade</string>
+    <string name="qt_tp_unidade">Quantidade da unidade</string>
+    <string name="vl_produto">Preço</string>
+    <string name="qt_produto">Quantidade</string>
+    <string name="endereco">Endereço</string>   
+    <string name="cadastrar">Cadastrar</string> 
+
+</resources>
