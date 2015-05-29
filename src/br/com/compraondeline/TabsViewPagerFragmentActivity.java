@@ -84,7 +84,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     private void intialiseViewPager() {
  
         List<Fragment> fragments = new Vector<Fragment>();
-        fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
+        //fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Tab2Fragment.class.getName()));
         //fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
         this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
@@ -99,16 +99,16 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
         
-        View tabview = createTabView(mTabHost.getContext(), 0);
+        //View tabview = createTabView(mTabHost.getContext(), 0);
         View tabview2 = createTabView(mTabHost.getContext(), 1);
         //View tabview3 = createTabView(mTabHost.getContext(), 2);
         
         TabInfo tabInfo = null;
         
-        TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
+        /*TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
         		this.mTabHost.newTabSpec("Tab1").setIndicator(tabview), 
         		( tabInfo = new TabInfo("Tab1", Tab1Fragment.class, args)));        
-        this.mapTabInfo.put(tabInfo.tag, tabInfo);
+        this.mapTabInfo.put(tabInfo.tag, tabInfo);*/
         
         TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
         		this.mTabHost.newTabSpec("Tab2").setIndicator(tabview2), 

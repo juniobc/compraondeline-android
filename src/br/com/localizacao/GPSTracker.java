@@ -1,5 +1,6 @@
 package br.com.localizacao;
 
+import br.com.compraondeline.Tab2Fragment;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -27,14 +28,14 @@ public class GPSTracker extends Service implements LocationListener {
     boolean canGetLocation = false;
  
     Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    private static double  latitude; // latitude
+    private static double longitude; // longitude
  
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; // 10 meters
  
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 10 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 1; // 1 segundos
  
     // Declaring a Location Manager
     protected LocationManager locationManager;
@@ -180,6 +181,13 @@ public class GPSTracker extends Service implements LocationListener {
  
     @Override
     public void onLocationChanged(Location location) {
+    	
+    	if(location == null){    		
+    		return;	    	
+    	}
+    	
+    	latitude = location.getLatitude();
+    	longitude = location.getLongitude();
     	
     }
  

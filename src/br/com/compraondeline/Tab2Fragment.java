@@ -71,6 +71,8 @@ public class Tab2Fragment extends Fragment {
     }
     
     public void cadatrar(Button cadastrar){
+    	
+    	if(gps.canGetLocation()){
 
     	cadastrar.setOnClickListener(new OnClickListener() {
 
@@ -113,6 +115,11 @@ public class Tab2Fragment extends Fragment {
 						tp_cad_b = false;
 						
 					}
+					
+					gps.getLocation();
+					
+					Toast.makeText(getActivity(), Double.toString(gps.getLatitude()), Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), Double.toString(gps.getLongitude()), Toast.LENGTH_LONG).show();
 
 	                db.addProduto(new Produto(
 	                		nmProd.getText().toString().trim(), 
@@ -125,7 +132,9 @@ public class Tab2Fragment extends Fragment {
 	                		tp_cad_b	                		
 	                )); 
 	                
-	                List<Produto> produtos = db.getAllProdutos();       
+	                Toast.makeText(getActivity(), "Cadastrado com sucesso !", Toast.LENGTH_LONG).show();
+	                
+	                /*List<Produto> produtos = db.getAllProdutos();       
 	                
 	                for (Produto cn : produtos) {
 	                    String log = "Tipo cadastro: "+cn.getTpCad()+"Nome: "+cn.getNome()+",Tipo un:"+cn.getTpUnidade()
@@ -135,12 +144,18 @@ public class Tab2Fragment extends Fragment {
 	                        // Writing Contacts to log
 	                    Toast.makeText(getActivity(), log, Toast.LENGTH_LONG).show();
 	            	
-	                }
+	                }*/
 					
 				}  	
             	
             }
         });
+    	
+    	}else{
+    		
+    		gps.showSettingsAlert();
+    		
+    	}
     	
     }
 
