@@ -9,5 +9,21 @@
     <string name="qt_produto">Quantidade</string>
     <string name="endereco">Endereço</string>   
     <string name="cadastrar">Cadastrar</string> 
+    
+    <string-array name="tp_cad">
+        <item>Cadastro</item>
+        <item>Compra</item>
+    </string-array>
+    
+    <string-array name="tp_un">
+        <item></item>
+        <item>G</item>
+        <item>KG</item>
+        <item>ML</item>
+        <item>UN</item>
+        <item>L</item>
+        <item>M</item>
+        <item>KM</item>
+    </string-array>
 
 </resources>

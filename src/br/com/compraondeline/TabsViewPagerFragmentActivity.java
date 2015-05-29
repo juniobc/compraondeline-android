@@ -5,15 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-
 import android.content.Context;
 import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +28,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, TabsViewPagerFragmentActivity.TabInfo>();
     private PagerAdapter mPagerAdapter;
     private Fragment currentFragment;
+    public static FragmentManager fragmentManager;
 
     private class TabInfo {
          private String tag;
@@ -73,6 +71,8 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         }
 
         this.intialiseViewPager();
+        
+        fragmentManager = getSupportFragmentManager();
 		
     }
 
