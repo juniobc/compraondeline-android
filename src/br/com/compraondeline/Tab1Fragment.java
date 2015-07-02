@@ -3,10 +3,13 @@ package br.com.compraondeline;
 import java.util.List;
 
 import br.com.entidade.Produto;
+import br.com.googleplay.GoogleServicos;
 import br.com.localizacao.GPSTracker;
 import br.com.maps.CustomMapFragment;
 import br.com.model.ProdutoDB;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,7 +29,7 @@ import android.view.ViewGroup;
 public class Tab1Fragment extends Fragment implements CustomMapFragment.OnMapReadyListener {
 	
 	private static GoogleMap mMap;
-	private GPSTracker gps;
+	private GoogleServicos googleServico;
 	private static CustomMapFragment mMapFragment;
 	
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +37,9 @@ public class Tab1Fragment extends Fragment implements CustomMapFragment.OnMapRea
     	
     	View view = inflater.inflate(R.layout.tab1, container, false);
     	
-    	gps = new GPSTracker(getActivity());
+    	googleServico = new GoogleServicos(getActivity());
+        googleServico.setmLocationUpdate(true);
+        googleServico.connect();
     	
     	mMapFragment = CustomMapFragment.newInstance();
         getChildFragmentManager().beginTransaction().replace(R.id.map, mMapFragment).commit();
@@ -42,13 +47,15 @@ public class Tab1Fragment extends Fragment implements CustomMapFragment.OnMapRea
         return view;
         
     }
-    
     @Override
     public void onMapReady() {
     	
         mMap = mMapFragment.getMap();
         mMap.setMyLocationEnabled(true);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(gps.getLatitude(), gps.getLongitude()), 15);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(
+        		googleServico.getLocalizador().getLocation().getLongitude(), 
+        		googleServico.getLocalizador().getLocation().getLatitude()), 15
+        );
         mMap.animateCamera(cameraUpdate);
         
         for (Produto object : buscaProduto()) {
@@ -72,6 +79,5 @@ public class Tab1Fragment extends Fragment implements CustomMapFragment.OnMapRea
     	return produtoList;
 		
 	}
-    
 
 }

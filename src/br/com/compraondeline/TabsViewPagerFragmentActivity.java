@@ -5,8 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import br.com.googleplay.GoogleServicos;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.MapFragment;
+
 import android.content.Context;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -21,7 +31,8 @@ import android.widget.TabHost.TabContentFactory;
 
   
 
-public class TabsViewPagerFragmentActivity extends FragmentActivity implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
+public class TabsViewPagerFragmentActivity extends FragmentActivity implements 
+TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
  
 	private TabHost mTabHost;
     private ViewPager mViewPager;
@@ -84,7 +95,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     private void intialiseViewPager() {
  
         List<Fragment> fragments = new Vector<Fragment>();
-        //fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Tab2Fragment.class.getName()));
         //fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
         this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
@@ -99,16 +110,16 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
         mTabHost = (TabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup();
         
-        //View tabview = createTabView(mTabHost.getContext(), 0);
+        View tabview = createTabView(mTabHost.getContext(), 0);
         View tabview2 = createTabView(mTabHost.getContext(), 1);
         //View tabview3 = createTabView(mTabHost.getContext(), 2);
         
         TabInfo tabInfo = null;
         
-        /*TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
+        TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
         		this.mTabHost.newTabSpec("Tab1").setIndicator(tabview), 
         		( tabInfo = new TabInfo("Tab1", Tab1Fragment.class, args)));        
-        this.mapTabInfo.put(tabInfo.tag, tabInfo);*/
+        this.mapTabInfo.put(tabInfo.tag, tabInfo);
         
         TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
         		this.mTabHost.newTabSpec("Tab2").setIndicator(tabview2), 
@@ -156,6 +167,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
 
         tabSpec.setContent(activity.new TabFactory(activity));
         tabHost.addTab(tabSpec);
+                
     }
 
 
@@ -202,14 +214,11 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements T
     public interface OnRefreshListener {
         public void onRefresh();
     }
- 
-    /* (non-Javadoc)
-     * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
-     */
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        // TODO Auto-generated method stub
- 
-    }
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
  
 }
