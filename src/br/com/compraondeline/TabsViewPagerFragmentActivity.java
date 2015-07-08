@@ -5,18 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import br.com.googleplay.GoogleServicos;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.MapFragment;
-
+import br.com.localizacao.GPSTracker;
 import android.content.Context;
 import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -40,6 +31,7 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
     private PagerAdapter mPagerAdapter;
     private Fragment currentFragment;
     public static FragmentManager fragmentManager;
+    private static GPSTracker localizador;
 
     private class TabInfo {
          private String tag;
@@ -71,20 +63,38 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
  
     }
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.tabview);
+        
+        this.intialiseViewPager();
 
         this.initialiseTabHost(savedInstanceState);
         if (savedInstanceState != null) {
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state
         }
-
-        this.intialiseViewPager();
         
         fragmentManager = getSupportFragmentManager();
+        
+        localizador = new GPSTracker(this);
 		
+    }
+    
+    @Override
+    protected void onStart(){
+    	
+    	super.onStart();
+    	
+    	GPSTracker.mGoogleApiClient.connect();
+    	
+    }
+    
+    @Override
+    protected void onStop() {
+    	GPSTracker.mGoogleApiClient.disconnect();
+        super.onStop();
     }
 
     protected void onSaveInstanceState(Bundle outState) {
@@ -97,7 +107,7 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
         List<Fragment> fragments = new Vector<Fragment>();
         fragments.add(Fragment.instantiate(this, Tab1Fragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Tab2Fragment.class.getName()));
-        //fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, Tab3Fragment.class.getName()));
         this.mPagerAdapter  = new PagerAdapter(super.getSupportFragmentManager(), fragments);
 
         this.mViewPager = (ViewPager)super.findViewById(R.id.viewpager);
@@ -112,7 +122,7 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
         
         View tabview = createTabView(mTabHost.getContext(), 0);
         View tabview2 = createTabView(mTabHost.getContext(), 1);
-        //View tabview3 = createTabView(mTabHost.getContext(), 2);
+        View tabview3 = createTabView(mTabHost.getContext(), 2);
         
         TabInfo tabInfo = null;
         
@@ -126,14 +136,14 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
         		( tabInfo = new TabInfo("Tab2", Tab2Fragment.class, args)));        
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
         
-        /*TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
+        TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, 
         		this.mTabHost.newTabSpec("Tab3").setIndicator(tabview3), 
         		( tabInfo = new TabInfo("Tab3", Tab3Fragment.class, args)));        
-        this.mapTabInfo.put(tabInfo.tag, tabInfo);*/
+        this.mapTabInfo.put(tabInfo.tag, tabInfo);
         
         // Default to first tab
-        //this.onTabChanged("Tab1");
-        //
+        //this.onTabChanged("Tab3");
+        
         mTabHost.setOnTabChangedListener(this);
     }
 
@@ -147,13 +157,19 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
 	    
 		    case 0:
 		    	//img_btn.setImageResource(R.drawable.consulta);
-		    	txt_aba.setText("Consulta");
+		    	txt_aba.setText("Mapa");
 		    	txt_aba.setTextColor(Color.parseColor("#FFFFFF"));
 		    	break;
 		    	
 		    case 1:
 		    	//img_btn.setImageResource(R.drawable.cadastro);
 		    	txt_aba.setText("Cadastro");
+		    	txt_aba.setTextColor(Color.parseColor("#FFFFFF"));
+		    	break;
+		    	
+		    case 2:
+		    	//img_btn.setImageResource(R.drawable.cadastro);
+		    	txt_aba.setText("Consulta");
 		    	txt_aba.setTextColor(Color.parseColor("#FFFFFF"));
 		    	break;
 	    
@@ -195,7 +211,9 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
         // TODO Auto-generated method stub
         this.mTabHost.setCurrentTab(position);
         
-        if(position==1){
+        if(position==0){
+        	
+        	Tab1Fragment.atualizaProdutoMapa(this);
         	
         	/*GPSTracker gps;
         	this.currentFragment = mPagerAdapter.getItem(mViewPager.getCurrentItem());
@@ -206,6 +224,10 @@ TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
 			double longitude = gps.getLongitude();
 			
 			Tab2Fragment.updateLocation(latitude, longitude);*/
+        	
+        }else if(position==2){
+        	
+        	Tab3Fragment.listaProduto(this);
         	
         }
         

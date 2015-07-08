@@ -9,6 +9,10 @@
     <string name="qt_produto">Quantidade</string>
     <string name="endereco">Endereço</string>   
     <string name="cadastrar">Cadastrar</string> 
+    <string name="deletar">Deletar</string> 
+    <string name="reut_end">Reutilizar endereco</string> 
+    <string name="btn_mapa">Ver no mapa</string> 
+    <string name="atualizaLocal">Atualiza Local</string> 
     
     <string-array name="tp_cad">
         <item>Cadastro</item>

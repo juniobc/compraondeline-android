@@ -19,5 +19,19 @@
         <item name="android:windowNoTitle">true</item>
 
     </style>
+    
+    <style parent="@android:style/Widget.RatingBar" name="fpRatingBar">
+
+	<item name="android:progressDrawable">@drawable/rating_bar_item</item>
+	
+	<item name="android:minHeight">12.0dip</item>
+	
+	<item name="android:numStars">5</item>
+	
+	<item name="android:stepSize">0.1</item>
+	
+	<item name="android:isIndicator">true</item>
+	
+	</style>
 
 </resources>

@@ -180,7 +180,6 @@
 			            android:layout_weight="1"
 			            android:background="@drawable/buscar_borda"
 			            android:text="@string/cadastrar"
-			            android:onClick="cadastrar"
 			            android:textColor="#FFFFFF"
 			            android:textSize="12sp" />
 		            

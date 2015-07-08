@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.entidade.Produto;
 import br.com.localizacao.GPSTracker;
 import br.com.model.ProdutoDB;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -34,14 +35,11 @@ public class Tab2Fragment extends Fragment {
 	private EditText nmQuant;
 	private EditText qt_tp_un;
 	private TextView end_prod;
-	private GPSTracker gps;
 	
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
     	
     	View view = inflater.inflate(R.layout.tab2, container, false);
-    	
-    	//gps = new GPSTracker(getActivity());
     	
     	tp_cad = (Spinner) view.findViewById(R.id.tp_cad);
     	adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -64,20 +62,20 @@ public class Tab2Fragment extends Fragment {
     	
     	cadastrar = (Button) view.findViewById(R.id.btn_busca_prod);
     	
-    	cadatrar(cadastrar);
+    	cadastrar(cadastrar);
         
         return view;
         
     }
     
-    public void cadatrar(Button cadastrar){
-    	
-    	/*if(gps.canGetLocation()){
+    public void cadastrar(Button cadastrar){
 
     	cadastrar.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View view) {
+            	
+            	Location local;
             	
             	tp_cad.getSelectedItem().toString();
             	
@@ -116,10 +114,9 @@ public class Tab2Fragment extends Fragment {
 						
 					}
 					
-					gps.getLocation();
+					//gps.getLocation();
 					
-					Toast.makeText(getActivity(), Double.toString(gps.getLatitude()), Toast.LENGTH_LONG).show();
-					Toast.makeText(getActivity(), Double.toString(gps.getLongitude()), Toast.LENGTH_LONG).show();
+					local = GPSTracker.ultimoLocal();
 
 	                db.addProduto(new Produto(
 	                		nmProd.getText().toString().trim(), 
@@ -127,10 +124,13 @@ public class Tab2Fragment extends Fragment {
 	                		Float.parseFloat(qt_tp_un.getText().toString().trim()), 
 	                		Float.parseFloat(nmPreco.getText().toString().trim()), 
 	                		Integer.parseInt(nmQuant.getText().toString().trim()), 
-	                		Double.toString(gps.getLatitude()),
-	                		Double.toString(gps.getLongitude()),
+	                		Double.toString(local.getLatitude()),
+	                		Double.toString(local.getLongitude()),
 	                		tp_cad_b	                		
 	                )); 
+	                
+	                Toast.makeText(getActivity(), Double.toString(local.getLatitude()), Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), Double.toString(local.getLongitude()), Toast.LENGTH_LONG).show();
 	                
 	                Toast.makeText(getActivity(), "Cadastrado com sucesso !", Toast.LENGTH_LONG).show();
 					
@@ -138,12 +138,6 @@ public class Tab2Fragment extends Fragment {
             	
             }
         });
-    	
-    	}else{
-    		
-    		gps.showSettingsAlert();
-    		
-    	}*/
     	
     }
 

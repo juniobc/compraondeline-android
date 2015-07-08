@@ -111,7 +111,7 @@ public class ProdutoDB extends SQLiteOpenHelper{
         Boolean tpCad;
         // Select All Query
         String selectQuery = "SELECT "+KEY_ID+", "+KEY_NM_PROD+", "+KEY_TP_UN_PROD+", "+KEY_QT_TP_UN+", "+KEY_PRECO+", "+KEY_QUANT+", "
-        +KEY_CD_BARRA+", "+KEY_LAT+", "+KEY_LONG+", "+KEY_TP_CAD+", "+KEY_DT_HR_CAD+" FROM " + TABLE_PRODUTO;
+        +KEY_CD_BARRA+", "+KEY_LAT+", "+KEY_LONG+", "+KEY_TP_CAD+", "+KEY_DT_HR_CAD+" FROM " + TABLE_PRODUTO + " ORDER BY cd_produto DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -183,10 +183,10 @@ public class ProdutoDB extends SQLiteOpenHelper{
     }
 
 
-    public void deleteProduto(Produto produto) {
+    public void deleteProduto(int cd_produto) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PRODUTO, KEY_ID + " = ?",
-        new String[] { String.valueOf(produto.getCdProd())});
+        new String[] { String.valueOf(cd_produto)});
         db.close();
     }
 
