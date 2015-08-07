@@ -1,0 +1,37 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <item name="android:windowSoftInputMode">stateHidden</item>
+        <item name="android:windowNoTitle">true</item>
+
+    </style>
+    
+    <style parent="@android:style/Widget.RatingBar" name="fpRatingBar">
+
+	<item name="android:progressDrawable">@drawable/rating_bar_item</item>
+	
+	<item name="android:minHeight">12.0dip</item>
+	
+	<item name="android:numStars">5</item>
+	
+	<item name="android:stepSize">0.1</item>
+	
+	<item name="android:isIndicator">true</item>
+	
+	</style>
+
+</resources>

@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="app_name">Compraondeline</string>
+    <string name="tp_cadastro">Tipo de cadastro</string>
+    <string name="nm_produto">Nome</string>
+    <string name="tp_unidade">Unidade</string>
+    <string name="qt_tp_unidade">Quantidade da unidade</string>
+    <string name="vl_produto">Preço</string>
+    <string name="qt_produto">Quantidade</string>
+    <string name="endereco">Endereço</string>   
+    <string name="cadastrar">Cadastrar</string> 
+    <string name="deletar">Deletar</string> 
+    <string name="reut_end">Reutilizar endereco</string> 
+    <string name="btn_mapa">Ver no mapa</string> 
+    <string name="atualizaLocal">Atualiza Local</string> 
+    
+    <string-array name="tp_cad">
+        <item>Cadastro</item>
+        <item>Compra</item>
+    </string-array>
+    
+    <string-array name="tp_un">
+        <item></item>
+        <item>G</item>
+        <item>KG</item>
+        <item>ML</item>
+        <item>UN</item>
+        <item>L</item>
+        <item>M</item>
+        <item>KM</item>
+    </string-array>
+
+</resources>

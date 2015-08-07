@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:utils="http://schemas.android.com/apk/res-auto" 
+xmlns:android="http://schemas.android.com/apk/res/android" 
+android:baselineAligned="false" 
+android:layout_height="wrap_content" 
+android:layout_width="fill_parent" 
+android:padding="@dimen/padding_medium" 
+android:orientation="horizontal"
+android:id="@+id/row">
+
+
+	<LinearLayout
+		android:layout_height="wrap_content" 
+		android:layout_width="@dimen/vendor_logo_size" 
+		android:orientation="vertical">
+
+		<ImageView 
+			android:layout_height="@dimen/vendor_logo_size" 
+			android:layout_width="@dimen/vendor_logo_size" 
+			android:background="@android:color/white" 
+			android:src="@drawable/sem_imagem"
+			android:id="@+id/img_produto"/>
+
+	</LinearLayout>
+
+	<LinearLayout 
+		android:layout_height="wrap_content" 
+		android:layout_width="0.0dip" 
+		android:orientation="vertical" 
+		android:id="@+id/restaurantView"
+		android:layout_weight="1.0" 
+		android:layout_marginLeft="@dimen/onboarding_radio_size">
+
+
+		<LinearLayout 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:orientation="horizontal" 
+			android:gravity="center_vertical">
+
+			<RatingBar 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:id="@+id/vendorRating" 
+				style="@style/fpRatingBar"/>
+
+			<TextView 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:id="@+id/textViewNumberOfReviews" 
+				android:textColor="@color/grey_reviews" 
+				android:textSize="@dimen/text_size_small" 
+				android:layout_marginLeft="@dimen/padding_small" 
+				android:drawablePadding="@dimen/padding_very_small"/>
+
+		</LinearLayout>
+
+		<TextView 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content" 
+			android:id="@+id/nm_produto" 
+			android:ellipsize="end" 
+			android:text="teste123456"
+			android:textColor="@color/black_vendor_info" 
+			android:textSize="@dimen/text_default_size" 
+			android:singleLine="true"/>
+		
+		<TextView 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content" 
+			android:id="@+id/vl_produto" 
+			android:textColor="@color/red_error_edit_text" 
+			android:textSize="@dimen/text_default_size"/>
+
+		<TextView 
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content" 
+			android:id="@+id/vendorCuisineTextView" 
+			android:ellipsize="end" 
+			android:textColor="@color/grey_cart_toppings" 
+			android:textSize="@dimen/text_list_size" 
+			android:singleLine="true"/>
+
+
+		<LinearLayout 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:orientation="horizontal" 
+			android:layout_marginTop="@dimen/padding_medium_bigger">
+
+
+			<LinearLayout 
+				android:layout_height="wrap_content" 
+				android:layout_width="0.0dip" 
+				android:orientation="vertical" 
+				android:layout_weight="1.0">
+
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/vendorDeliveryTextView" 
+					android:textColor="@color/grey_cart_toppings" 
+					android:text="Editar"
+					android:textSize="@dimen/text_size_smallest"/>
+
+				<ImageView 
+					android:layout_height="@dimen/abc_dialog_padding_material" 
+					android:layout_width="@dimen/abc_dialog_padding_material" 
+					android:background="@android:color/white" 
+					android:src="@drawable/editar"
+					android:id="@+id/img_editar"/>
+
+			</LinearLayout>
+			
+			<LinearLayout 
+				android:layout_height="wrap_content" 
+				android:layout_width="0.0dip" 
+				android:orientation="vertical" 
+				android:layout_weight="1.0">
+
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/vendorDeliveryTextView2" 
+					android:textColor="@color/grey_cart_toppings" 
+					android:text="fsfacascafd"
+					android:textSize="@dimen/text_size_smallest"/>
+
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/vendorDeliveryValueTextView2" 
+					android:textColor="@color/black_vendor_info" 
+					android:text="fsfafd"
+					android:textSize="@dimen/text_size_small"/>
+
+			</LinearLayout>
+			
+			<LinearLayout 
+				android:layout_height="wrap_content" 
+				android:layout_width="0.0dip" 
+				android:orientation="vertical" 
+				android:layout_weight="1.0">
+
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/vendorDeliveryTextView3" 
+					android:textColor="@color/grey_cart_toppings" 
+					android:text="fsfacascafd"
+					android:textSize="@dimen/text_size_smallest"/>
+
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/vendorDeliveryValueTextView3" 
+					android:textColor="@color/black_vendor_info" 
+					android:text="fsfafd"
+					android:textSize="@dimen/text_size_small"/>
+
+			</LinearLayout>
+
+			<View 
+				android:layout_height="fill_parent" 
+				android:layout_width="@dimen/card_margin_size" 
+				android:background="@color/disabled_grey" 
+				android:layout_marginTop="@dimen/padding_extra_small" 
+				android:layout_marginBottom="@dimen/padding_extra_small"/>
+
+			<LinearLayout 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:orientation="vertical" 
+				android:layout_marginLeft="@dimen/padding_intermediate">
+				
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/dt_produto" 
+					android:textSize="@dimen/text_default_size"/>
+				
+				<TextView 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/hr_produto" 
+					android:textSize="@dimen/text_default_size"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
